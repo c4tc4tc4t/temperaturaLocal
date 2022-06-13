@@ -34,7 +34,7 @@ function Main() {
           <div className="carregando">{temperatura}</div>
         ) : (
           <>
-            <div className="temperatura">{temperatura}</div>
+            <div className="temperatura">{temperatura} °C</div>
             <LuaSol />
           </>
         )}

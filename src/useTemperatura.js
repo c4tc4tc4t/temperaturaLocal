@@ -16,14 +16,17 @@ function useTemperatura() {
         setTemperatura(
           Math.round(
             +jsonData.data.timelines[0].intervals[0].values.temperature
-          ).toString() + "°C"
+          ).toString()
         );
         setLoading(true);
       });
+  }, [latitudeLongitude.lat, latitudeLongitude.long]);
+
+  React.useEffect(() => {
     if (!loading) {
       setTemperatura("Carregando...");
     }
-  }, [latitudeLongitude.lat, latitudeLongitude.long, loading]);
+  }, [loading]);
 
   return [temperatura];
 }

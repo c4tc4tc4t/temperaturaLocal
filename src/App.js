@@ -5,9 +5,11 @@ import Main from "./Main";
 const App = () => {
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
+      <div className="containerGeral">
+        <Header />
+        <Main />
+        <Footer />
+      </div>
     </>
   );
 };
