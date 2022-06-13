@@ -5,6 +5,7 @@ function useTemperatura() {
   const [temperatura, setTemperatura] = React.useState(0);
   const [latitudeLongitude] = useLatLong();
   React.useEffect(() => {
+    if (!latitudeLongitude.lat || !latitudeLongitude.long) return;
     fetch(
       `https://api.tomorrow.io/v4/timelines?location=${latitudeLongitude.lat},${latitudeLongitude.long}&fields=temperature&timesteps=current&units=metric&apikey=s8e35wIp8DoWrNUqaboPgmEkDbjFEM9u&timezone=Brazil/East`
     )

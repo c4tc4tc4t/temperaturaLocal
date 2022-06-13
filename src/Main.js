@@ -24,7 +24,7 @@ function Main() {
   }, []);
 
   return (
-    <div className="img" style={{ backgroundImage: `url(${dia})` }}>
+    <div className="img" style={{ backgroundImage: `url(${diaNoite})` }}>
       <div className="container">
         <CEP />
         <Data />

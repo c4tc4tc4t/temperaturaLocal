@@ -15,7 +15,7 @@ function LuaSol() {
       }
     });
   }, []);
-  return <img className="luaSol" src={Sol} alt="luaSol"></img>;
+  return <img className="luaSol" src={luaSol} alt="luaSol"></img>;
 }
 
 export default LuaSol;
