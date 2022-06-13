@@ -30,8 +30,14 @@ function Main() {
         <Data />
       </div>
       <div className="centro">
-        <div className="temperatura">{temperatura}°C</div>
-        <LuaSol />
+        {temperatura === "Carregando..." ? (
+          <div className="carregando">{temperatura}</div>
+        ) : (
+          <>
+            <div className="temperatura">{temperatura}</div>
+            <LuaSol />
+          </>
+        )}
       </div>
       <MsgDay />
     </div>

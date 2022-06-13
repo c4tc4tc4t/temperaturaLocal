@@ -3,7 +3,9 @@ import useLatLong from "./useLatLong";
 
 function useTemperatura() {
   const [temperatura, setTemperatura] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);
   const [latitudeLongitude] = useLatLong();
+
   React.useEffect(() => {
     if (!latitudeLongitude.lat || !latitudeLongitude.long) return;
     fetch(
@@ -14,10 +16,15 @@ function useTemperatura() {
         setTemperatura(
           Math.round(
             +jsonData.data.timelines[0].intervals[0].values.temperature
-          ).toString()
+          ).toString() + "°C"
         );
+        setLoading(true);
       });
-  }, [latitudeLongitude.lat, latitudeLongitude.long]);
+    if (!loading) {
+      setTemperatura("Carregando...");
+    }
+  }, [latitudeLongitude.lat, latitudeLongitude.long, loading]);
+
   return [temperatura];
 }
 
