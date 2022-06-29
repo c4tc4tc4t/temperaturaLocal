@@ -7,7 +7,7 @@ function MsgDay() {
   const [temperatura] = useTemperatura();
 
   React.useEffect(() => {
-    if (!temperatura) return;
+    if (temperatura == null) return;
     setMsg(() => {
       if (temperatura <= 0) {
         return "CUIDADO, Frio congelante. Se aqueça o maximo possivel";

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import useLatLong from "./useLatLong";
 
@@ -8,14 +9,18 @@ function useTemperatura() {
 
   React.useEffect(() => {
     if (!latitudeLongitude.lat || !latitudeLongitude.long) return;
-    fetch(
-      `https://api.tomorrow.io/v4/timelines?location=${latitudeLongitude.lat},${latitudeLongitude.long}&fields=temperature&timesteps=current&units=metric&apikey=s8e35wIp8DoWrNUqaboPgmEkDbjFEM9u&timezone=Brazil/East`
-    )
-      .then((response) => response.json())
-      .then((jsonData) => {
+    axios
+      .get(
+        `https://api.tomorrow.io/v4/timelines?location=${latitudeLongitude.lat},${latitudeLongitude.long}&fields=temperature&timesteps=current&units=metric&apikey=${process.env.REACT_APP_NOT_SECRET_CODE}&timezone=Brazil/East`
+      )
+      .then((response) => {
+        return response;
+      })
+      .then((Data) => {
+        console.log(Data.headers[0]);
         setTemperatura(
           Math.round(
-            +jsonData.data.timelines[0].intervals[0].values.temperature
+            +Data.data.data.timelines[0].intervals[0].values.temperature
           ).toString()
         );
         setLoading(true);
