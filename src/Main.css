@@ -43,7 +43,7 @@ body {
   font-size: 5rem;
 }
 .carregando {
-  color: #083a65;
+  color: red;
   font-size: 3rem;
   margin-top: 180px;
 }

@@ -6,6 +6,7 @@ function useTemperatura() {
   const [temperatura, setTemperatura] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
   const [latitudeLongitude] = useLatLong();
+  const [mensagemDeErro, setMensagemDeErro] = React.useState("Carregando...");
 
   React.useEffect(() => {
     if (!latitudeLongitude.lat || !latitudeLongitude.long) return;
@@ -17,21 +18,25 @@ function useTemperatura() {
         return response;
       })
       .then((Data) => {
-        console.log(Data.headers[0]);
         setTemperatura(
           Math.round(
             +Data.data.data.timelines[0].intervals[0].values.temperature
           ).toString()
         );
         setLoading(true);
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          setMensagemDeErro("A chave da API do tomorrow.io está incorreta");
+        }
       });
   }, [latitudeLongitude.lat, latitudeLongitude.long]);
 
   React.useEffect(() => {
     if (!loading) {
-      setTemperatura("Carregando...");
+      setTemperatura(mensagemDeErro);
     }
-  }, [loading]);
+  }, [loading, mensagemDeErro]);
 
   return [temperatura];
 }

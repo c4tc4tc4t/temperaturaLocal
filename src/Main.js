@@ -30,13 +30,13 @@ function Main() {
         <Data />
       </div>
       <div className="centro">
-        {temperatura === "Carregando..." ? (
-          <div className="carregando">{temperatura}</div>
-        ) : (
+        {parseInt(temperatura) ? (
           <>
             <div className="temperatura">{temperatura} °C</div>
             <LuaSol />
           </>
+        ) : (
+          <div className="carregando">{temperatura}</div>
         )}
       </div>
       <MsgDay />
